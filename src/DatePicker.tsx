@@ -65,10 +65,11 @@ class DatePicker extends React.Component<IDatePickerProps, any> {
     const props = this.props;
     const { mode } = props;
     let newValue = cloneDate(this.getDate());
+    console.log(value, index);
     if (mode === DATETIME || mode === DATE || mode === YEAR || mode === MONTH) {
       switch (index) {
         case 0:
-          newValue.setFullYear(value);
+          newValue.setDate(value);
           break;
         case 1:
           // Note: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth
@@ -76,7 +77,7 @@ class DatePicker extends React.Component<IDatePickerProps, any> {
           setMonth(newValue, value);
           break;
         case 2:
-          newValue.setDate(value);
+          newValue.setFullYear(value);
           break;
         case 3:
           this.setHours(newValue, value);
@@ -272,9 +273,9 @@ class DatePicker extends React.Component<IDatePickerProps, any> {
       });
     }
     return [
-      yearCol,
-      monthCol,
       { key: 'day', props: { children: days } },
+      monthCol,
+      yearCol,
     ];
   }
 
@@ -430,7 +431,7 @@ class DatePicker extends React.Component<IDatePickerProps, any> {
 
     if (mode === DATETIME || mode === DATE) {
       cols = this.getDateData();
-      value = [date.getFullYear() + '', date.getMonth() + '', date.getDate() + ''];
+      value = [ date.getDate() + '', date.getMonth() + '', date.getFullYear() + ''];
     }
 
     if (mode === DATETIME || mode === TIME) {
