@@ -65,7 +65,6 @@ class DatePicker extends React.Component<IDatePickerProps, any> {
     const props = this.props;
     const { mode } = props;
     let newValue = cloneDate(this.getDate());
-    console.log(value, index);
     if (mode === DATETIME || mode === DATE || mode === YEAR || mode === MONTH) {
       switch (index) {
         case 0:
